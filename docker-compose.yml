@@ -6,6 +6,7 @@ services:
     container_name: kids_app
     ports:
       - 5000:5000
+      - 5001:5001
     volumes:
       - .:/var/www/backend
     tty: true
