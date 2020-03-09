@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  kids_app:
+    build: .
+    container_name: kids_app
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/var/www/backend
+    tty: true
+    links:
+      - kids_app_database
+    depends_on:
+      - kids_app_database
+    environment:
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_DATABASE=kids_app
+      - DB_HOST=kids_app_database
+      - DB_PORT=3306
+      - ENABLE_SSL=false
+      - NODE_ENV=development
+  kids_app_database:
+    image: mysql:8.0.19
+    container_name: kids_app_database
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: kids_app
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--default-authentication-plugin=mysql_native_password']
