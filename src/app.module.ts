@@ -1,10 +1,20 @@
 import { Module } from '@nestjs/common';
-import { UserController } from './user/controllers/user.controller';
 import { UserModule } from './user/user.module';
+import {TypeOrmModule} from '@nestjs/typeorm';
+import { get } from 'config';
+const databaseConfig: any = {...get('database')};
 
 @Module({
-  imports: [UserModule],
-  controllers: [UserController],
+  imports: [
+    TypeOrmModule.forRoot({
+      ...databaseConfig,
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      migrationsRun: true,
+      migrations: [__dirname + '/migrations/*{.ts,.js}'],
+    }),
+    UserModule
+  ],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}

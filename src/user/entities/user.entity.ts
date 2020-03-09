@@ -36,4 +36,5 @@ export class UserEntity {
   avatar?: string;
 
   @Column({type: 'enum', enum: [ROLES.USER, ROLES.ADMIN]})
+  role: ROLES | string;
 }
