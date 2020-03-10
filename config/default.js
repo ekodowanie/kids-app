@@ -13,8 +13,9 @@ module.exports = {
     logging: false,
     password: env.DB_PASSWORD,
     port: env.DB_PORT,
-    synchronize: false,
+    synchronize: true,
     type: "mysql",
     username: env.DB_USERNAME,
+    migrationsRun: true,
   },
 };

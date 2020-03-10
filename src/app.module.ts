@@ -9,7 +9,6 @@ const databaseConfig: any = {...get('database')};
     TypeOrmModule.forRoot({
       ...databaseConfig,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      migrationsRun: true,
       migrations: [__dirname + '/migrations/*{.ts,.js}'],
     }),
     UserModule

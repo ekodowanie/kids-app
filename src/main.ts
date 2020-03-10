@@ -3,11 +3,13 @@ import { AppModule } from './app.module';
 import { get } from 'config';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { Logger } from '@nestjs/common';
+import { ExceptionsFilter } from './common/errors/exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = +get('application.port') || 5000;
-
+  app.useGlobalFilters(new ExceptionsFilter());
+  app.setGlobalPrefix(get('application.global_prefix'));
   setupSwagger(app);
 
   await app.listen(port);
