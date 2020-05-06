@@ -12,4 +12,12 @@ export class UserService {
   findById(id: string): Promise<UserEntity> {
     return this.userRepository.findById(id);
   }
+
+  findByEmail(email: string): Promise<UserEntity> {
+    return this.userRepository.findOne({where: {email}});
+  }
+
+  create(user: any): Promise<UserEntity> {
+    return this.userRepository.save(user)
+  }
 }

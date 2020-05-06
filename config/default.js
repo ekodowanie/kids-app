@@ -18,4 +18,7 @@ module.exports = {
     username: env.DB_USERNAME,
     migrationsRun: true,
   },
+  session: {
+    secret: 'test'
+  }
 };

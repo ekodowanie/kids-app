@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { get } from 'config';
+import { AuthModule } from './auth/auth.module';
 const databaseConfig: any = {...get('database')};
 
 @Module({
@@ -11,7 +12,8 @@ const databaseConfig: any = {...get('database')};
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       migrations: [__dirname + '/migrations/*{.ts,.js}'],
     }),
-    UserModule
+    UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

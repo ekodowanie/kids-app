@@ -15,6 +15,7 @@ services:
     depends_on:
       - kids_app_database
     environment:
+      - APP_NAME=kids_app
       - DB_USERNAME=root
       - DB_PASSWORD=root
       - DB_DATABASE=kids_app
@@ -22,6 +23,8 @@ services:
       - DB_PORT=3306
       - ENABLE_SSL=false
       - NODE_ENV=development
+      - SESSION_DOMAIN=4874b0dbf94aa696d066136189cad2cc3e9971b89b67a38cc601d10d7a9a422d
+      - SESSION_SECRET=4874b0dbf94aa696d066136189cad2cc3e9971b89b67a38cc601d10d7a9a422d
   kids_app_database:
     image: mysql:8.0.19
     container_name: kids_app_database
