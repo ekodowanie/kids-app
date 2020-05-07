@@ -1,9 +1,12 @@
 import { ApiHideProperty } from '@nestjs/swagger';
 
-export class LoginDTO {
+export class RegisterDTO {
   @ApiHideProperty()
   email: string;
 
   @ApiHideProperty()
-  pass: string;
+  password: string;
+
+  @ApiHideProperty()
+  name: string;
 }

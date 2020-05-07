@@ -1,7 +1,7 @@
 import {
   Column,
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 export enum ROLES {
@@ -11,8 +11,8 @@ export enum ROLES {
 
 @Entity('users')
 export class UserEntity {
-  @PrimaryColumn({ type: 'varchar' })
-  id: string;
+  @PrimaryGeneratedColumn({type: 'int'} )
+  id: number;
 
   @Column({type: 'varchar', length: 100})
   password: string;
