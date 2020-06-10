@@ -28,14 +28,15 @@ export class AuthController {
   @ApiResponse({ status: 201, type: RegisterRO })
   @ApiOperation({ description: 'Post user register' })
   @Post('register')
-  async register(@Body( new ValidationPipe(RegisterSchema)) body: RegisterDTO) {
+  async register(@Body(new ValidationPipe(RegisterSchema)) body: RegisterDTO) {
+    console.log(body);
     const registredUser = await this.userService.findByEmail(body.email);
 
     if (registredUser) {
       throw new BadRequestException(USER_ALREADY_EXISTS);
     }
 
-    this.authService.register(body);
+    await this.authService.register(body);
     return { success: true };
   }
 }

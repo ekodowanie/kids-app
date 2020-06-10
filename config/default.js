@@ -19,6 +19,6 @@ module.exports = {
     migrationsRun: true,
   },
   session: {
-    secret: 'test'
+    secret: env.SESSION_SECRET,
   }
 };
