@@ -29,7 +29,6 @@ export class AuthController {
   @ApiOperation({ description: 'Post user register' })
   @Post('register')
   async register(@Body(new ValidationPipe(RegisterSchema)) body: RegisterDTO) {
-    console.log(body);
     const registredUser = await this.userService.findByEmail(body.email);
 
     if (registredUser) {

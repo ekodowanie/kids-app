@@ -1,15 +1,17 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { get } from 'config';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { Logger } from '@nestjs/common';
 import { ExceptionsFilter } from './common/error/exception.filter';
+import {RolesGuard} from "./auth/roles.guard";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = +get('application.port') || 5000;
   app.useGlobalFilters(new ExceptionsFilter());
   app.setGlobalPrefix(get('application.global_prefix'));
+  app.useGlobalGuards(new RolesGuard(new Reflector()));
   setupSwagger(app);
 
   await app.listen(port);

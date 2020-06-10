@@ -9,10 +9,14 @@ import { AuthController } from './auth.controller'
 import { get } from 'config';
 
 @Module({
-  imports: [UserModule, PassportModule, JwtModule.register({
-    secret: get('session.secret'),
-    signOptions: { expiresIn: '60s' }
-  })],
+  imports: [
+    UserModule,
+    PassportModule,
+    JwtModule.register({
+      secret: get('session.secret'),
+      signOptions: { expiresIn: '360s' }
+    })
+  ],
   controllers: [
     AuthController,
   ],
